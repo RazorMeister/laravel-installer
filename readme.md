@@ -1,5 +1,4 @@
 # **Laravel-installer**
-> Here goes your awesome project description!
 
 ## Table of contents
 * [General info](#general-info)
@@ -62,7 +61,7 @@ ToDo list:
 Project is: _in progress_.
 
 ## Inspiration
-Add here credits. Project based on https://github.com/rashidlaasri/LaravelInstaller.
+Project based on https://github.com/rashidlaasri/LaravelInstaller.
 
 ## Contact
 Created by [@RazorMeister](https://www.razormeister.pl/) - feel free to contact me!
