@@ -31,6 +31,6 @@ class CheckSettings
         if ($this->settingsManager->envFileExists())
             return $next($request);
         else
-            return redirect(route('installer.mainSettings'))->with('error', 'Najpierw skonfiguruj aplikację');
+            return redirect(route('installer.mainSettings'))->with('error', trans('installer::lang.checkSettings'));
     }
 }

@@ -32,13 +32,18 @@ class InstallerServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom( __DIR__.'/routes.php');
         $this->loadViewsFrom(__DIR__.'/Views/', 'installer');
+        $this->loadTranslationsFrom(__DIR__.'/Lang/', 'installer');
 
         $this->publishes([
             __DIR__.'/Assets/' => public_path('vendor/installer')
-        ], 'public');
+        ], 'laravelInstaller');
 
         $this->publishes([
             __DIR__.'/../config/config.php' => base_path('config/installer.php'),
-        ], 'public');
+        ], 'laravelInstaller');
+
+        $this->publishes([
+            __DIR__.'/Lang/' => resource_path('lang/vendor/installer'),
+        ], 'laravelInstaller');
     }
 }

@@ -3,8 +3,8 @@
 @section('stepNumber', 5)
 
 @section('header')
-    <h3>Konto</h3>
-    <p>Poniżej możesz ustawić dane logowania do panelu!</p>
+    <h3>{{ trans('installer::lang.account.header') }}</h3>
+    <p>{{ trans('installer::lang.account.desc') }}</p>
 @endsection
 
 @section('content')
@@ -23,11 +23,11 @@
         @endforeach
         <div class="f1-buttons">
             @if($isInDb)
-                <button type="button" class="btn" disabled><i class="fa fa-check"></i> Utwórz konto</button>
-                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> Next</button>
+                <button type="button" class="btn" disabled><i class="fa fa-check"></i> {{ trans('installer::lang.main.createAccount') }}</button>
+                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
             @else
-                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Utwórz konto</button>
-                <button type="button" class="btn" disabled><i class="fa fa-arrow-right"></i> Next</button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> {{ trans('installer::lang.main.createAccount') }}</button>
+                <button type="button" class="btn" disabled><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
             @endif
         </div>
     </form>

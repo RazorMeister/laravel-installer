@@ -34,6 +34,6 @@ class CheckPackages
         if ($phpVerInfo['isOk'] && $packagesInfo['allOk'])
             return $next($request);
         else
-            return redirect(route('installer.packages'))->with('error', 'Najpierw sprawdź pakiety');
+            return redirect(route('installer.packages'))->with('error', trans('installer::lang.checkPackages'));
     }
 }

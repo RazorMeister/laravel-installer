@@ -3,8 +3,8 @@
 @section('stepNumber', 3)
 
 @section('header')
-    <h3>Permisje</h3>
-    <p>Poniżej możesz zobaczyć czy są nadane odpowiednie permisje.</p>
+    <h3>{{ trans('installer::lang.permissions.header') }}</h3>
+    <p>{{ trans('installer::lang.permissions.desc') }}</p>
 @endsection
 
 @section('content')
@@ -13,9 +13,9 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th class="text-center">Katalog</th>
-                <th class="text-center">Obecne prawa</th>
-                <th class="text-center">Minimalne prawa</th>
+                <th class="text-center">{{ trans('installer::lang.permissions.folder') }}</th>
+                <th class="text-center">{{ trans('installer::lang.permissions.currentPerms') }}</th>
+                <th class="text-center">{{ trans('installer::lang.permissions.minPerms') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -30,11 +30,11 @@
         </table>
         <div class="f1-buttons">
             @if($permsInfo['allOk'])
-                <button type="button" class="btn" disabled><i class="fa fa-refresh"></i> Odśwież</button>
-                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> Next</button>
+                <button type="button" class="btn" disabled><i class="fa fa-refresh"></i> {{ trans('installer::lang.main.refresh') }}</button>
+                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
             @else
-                <button type="button" class="btn btn-previous" onclick="window.location.reload();"><i class="fa fa-refresh"></i> Odśwież</button>
-                <button type="submit" class="btn" disabled><i class="fa fa-arrow-right"></i> Next</button>
+                <button type="button" class="btn btn-previous" onclick="window.location.reload();"><i class="fa fa-refresh"></i> {{ trans('installer::lang.main.refresh') }}</button>
+                <button type="submit" class="btn" disabled><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
             @endif
         </div>
     </form>

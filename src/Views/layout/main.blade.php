@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Title -->
-        <title>Laravel Installer</title>
+        <title>{{ trans('installer::lang.main.title') }}</title>
 
         <!-- CSRF token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -67,9 +67,7 @@
                 <div class="col-sm-8 col-sm-offset-2 text">
                     <h1><strong>Laravel</strong> Installator</h1>
                     <div class="description">
-                        <p>
-                            Poniżej możesz zainstalować swoją aplikacje.
-                        </p>
+                        <p>{{ trans('installer::lang.main.headerDesc') }}</p>
                     </div>
                 </div>
             </div>
@@ -83,37 +81,37 @@
                         </div>
                         <div class="f1-step @if(Request::is('install/start')) active @elseif(Request::is('install/packages') || Request::is('install/permissions') || Request::is('install/mainSettings') || Request::is('install/account') || Request::is('install/finish')) activated @endif">
                             <div class="f1-step-icon"><i class="fa fa-home"></i></div>
-                            <p>Start</p>
+                            <p>{{ trans('installer::lang.main.start') }}</p>
                         </div>
                         <div class="f1-step @if(Request::is('install/packages')) active @elseif(Request::is('install/permissions') || Request::is('install/mainSettings') || Request::is('install/account') || Request::is('install/finish')) activated @endif">
                             <div class="f1-step-icon"><i class="fa fa-server"></i></div>
-                            <p>Pakiety</p>
+                            <p>{{ trans('installer::lang.main.packages') }}</p>
                         </div>
                         <div class="f1-step @if(Request::is('install/permissions')) active @elseif(Request::is('install/mainSettings') || Request::is('install/account') || Request::is('install/finish')) activated @endif">
                             <div class="f1-step-icon"><i class="fa fa-key"></i></div>
-                            <p>Permisje</p>
+                            <p>{{ trans('installer::lang.main.permissions') }}</p>
                         </div>
                         <div class="f1-step @if(Request::is('install/mainSettings')) active @elseif(Request::is('install/account') || Request::is('install/finish')) activated @endif">
                             <div class="f1-step-icon"><i class="fa fa-cog"></i></div>
-                            <p>Ustawienia</p>
+                            <p>{{ trans('installer::lang.main.settings') }}</p>
                         </div>
                         <div class="f1-step @if(Request::is('install/account')) active @elseif(Request::is('install/finish')) activated @endif">
                             <div class="f1-step-icon"><i class="fa fa-user"></i></div>
-                            <p>Konto</p>
+                            <p>{{ trans('installer::lang.main.account') }}</p>
                         </div>
                         <div class="f1-step @if(Request::is('install/finish')) active @endif">
                             <div class="f1-step-icon"><i class="fa fa-sign-out"></i></div>
-                            <p>Koniec</p>
+                            <p>{{ trans('installer::lang.main.finish') }}</p>
                         </div>
                     </div>
                     @if (session('error'))
                         <div class="alert alert-danger" role="alert">
-                            <strong> Error </strong>- {{ session('error')}}
+                            <strong>{{ trans('installer::lang.main.error') }}</strong> - {{ session('error')}}
                         </div>
                     @endif
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
-                            <strong> Sukces </strong>- {{ session('success')}}
+                            <strong>{{ trans('installer::lang.main.success') }}</strong> - {{ session('success')}}
                         </div>
                     @endif
 

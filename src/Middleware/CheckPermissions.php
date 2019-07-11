@@ -33,6 +33,6 @@ class CheckPermissions
         if ($permsInfo['allOk'])
             return $next($request);
         else
-            return redirect(route('installer.permissions'))->with('error', 'Najpierw sprawdź permisje');
+            return redirect(route('installer.permissions'))->with('error', trans('installer::lang.checkPermissions'));
     }
 }

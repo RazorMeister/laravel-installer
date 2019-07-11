@@ -31,6 +31,6 @@ class CheckAccount
         if ($this->accountManager->isUserInDb())
             return $next($request);
         else
-            return redirect(route('installer.account'))->with('error', 'Najpier załóż konto!');
+            return redirect(route('installer.account'))->with('error', trans('installer::lang.checkAccount'));
     }
 }

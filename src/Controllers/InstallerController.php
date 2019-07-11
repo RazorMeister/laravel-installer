@@ -94,7 +94,7 @@ class InstallerController extends Controller
         $result = $settingManager->saveEnvInfo($request->all());
 
         if ($result['success'])
-            return redirect()->route('installer.account')->with('success', 'Ustawienia zostały zapisane');
+            return redirect()->route('installer.account')->with('success', trans('installer::lang.controller.settingsSaved'));
         else
             return redirect()->back()->with('error', $result['error'])->withInput();
     }
@@ -128,14 +128,14 @@ class InstallerController extends Controller
         $accountManager = new AccountManager();
 
         if ($accountManager->isUserInDb())
-            return redirect()->back()->with('error', 'Użytkownik w bazie już istnieje');
+            return redirect()->back()->with('error', trans('installer::lang.controller.alreadyInDb'));
 
         $request->validate($this->configManager->getAccountRules());
 
         if ($accountManager->createAccount($request->all()))
-            return redirect()->route('installer.finish')->with('success', 'Konto zostało dodane pomyślnie');
+            return redirect()->route('installer.finish')->with('success', trans('installer::lang.controller.accountCreated'));
         else
-            return redirect()->back()->with('error', 'Błąd przy tworzeniu konta')->withInput();
+            return redirect()->back()->with('error', trans('installer::lang.controller.errorAccount'))->withInput();
     }
 
     /**

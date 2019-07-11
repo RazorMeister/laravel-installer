@@ -3,8 +3,8 @@
 @section('stepNumber', 4)
 
 @section('header')
-    <h3>Główne ustawienia</h3>
-    <p>Poniżej skonfiguruj swoją aplikacje.</p>
+    <h3>{{ trans('installer::lang.mainSettings.header') }}</h3>
+    <p>{{ trans('installer::lang.mainSettings.desc') }}</p>
 @endsection
 
 @section('content')
@@ -27,11 +27,11 @@
         @endforeach
         <div class="f1-buttons">
             @if($isEnvFile)
-                <button type="button" class="btn" disabled><i class="fa fa-check"></i> Zapisz</button>
-                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> Next</button>
+                <button type="button" class="btn" disabled><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
+                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
             @else
-                <button type="submit" class="btn btn-next"><i class="fa fa-check"></i> Zapisz</button>
-                <button type="button" class="btn" disabled><i class="fa fa-arrow-right"></i> Next</button>
+                <button type="submit" class="btn btn-next"><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
+                <button type="button" class="btn" disabled><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
             @endif
         </div>
     </form>
