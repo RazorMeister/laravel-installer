@@ -54,8 +54,11 @@ class SettingsManager
             foreach ($zoneInfo['elements'] as $elementKey => $elementInfo)
                 $toEnv .= $elementInfo['envKey']."=".(strpos($data[$elementKey], ' ') !== false ? "'".$data[$elementKey]."'" : $data[$elementKey])."\n";
 
-        if (!file_put_contents(base_path('.env'), $toEnv))
-            return ['success' => false, 'error' => 'Cannot save .env file'];
+        try {
+            file_put_contents(base_path('.env'), $toEnv);
+        } catch (\Exception $e) {
+            return ['success' => false, 'error' => 'Cannot save .env file', 'file' => $toEnv];
+        }
 
         $result =  $this->setUpDb();
 

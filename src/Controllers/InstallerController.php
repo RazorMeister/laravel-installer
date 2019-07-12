@@ -95,6 +95,8 @@ class InstallerController extends Controller
 
         if ($result['success'])
             return redirect()->route('installer.account')->with('success', trans('installer::lang.controller.settingsSaved'));
+        else if ($result['error'] == 'Cannot save .env file')
+            return redirect()->back()->with(['file' => $result['file']]);
         else
             return redirect()->back()->with('error', $result['error'])->withInput();
     }

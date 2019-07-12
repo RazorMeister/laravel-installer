@@ -10,30 +10,43 @@
 @section('content')
     <form role="form" @if($isEnvFile) action="{{ route('installer.account') }}" method="GET" @else action="{{ route('installer.mainSettings') }}" method="POST" @endif>
         @csrf
-        @foreach($zones as $zoneName => $zoneInfo)
+
+        @if(isset($file))
             <hr>
-            <h4> {{ $zoneInfo['description'] }} </h4>
-            <hr>
-            @foreach($zoneInfo['elements'] as $elementName => $elementInfo)
-                @includeIf('installer::fields.' . $elementInfo['inputType'],
-               [
-                    'name' => $elementName,
-                    'label' => $elementInfo['description'],
-                    'value' => isset($currentSettings[$elementInfo['envKey']]) ? $currentSettings[$elementInfo['envKey']] : '',
-                    'placeholder' => $elementInfo['placeholder'],
-                    'options' => isset($elementInfo['options']) ? $elementInfo['options'] : []
-               ])
+            <h3>Ręczne tworzenie pliku .env</h3>
+            <p>Niestety wystąpił błąd podczas tworzenia pliku .env. Utwórz go sam (.env) i wklej poniższą zawartość.</p>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label" for="env">Skopiuj</label>
+                <div class="col-sm-8">
+                    <textarea id="env" class="form-control">{{ $file }}</textarea>
+                </div>
+            </div>
+        @else
+            @foreach($zones as $zoneName => $zoneInfo)
+                <hr>
+                <h4> {{ $zoneInfo['description'] }} </h4>
+                <hr>
+                @foreach($zoneInfo['elements'] as $elementName => $elementInfo)
+                    @includeIf('installer::fields.' . $elementInfo['inputType'],
+                   [
+                        'name' => $elementName,
+                        'label' => $elementInfo['description'],
+                        'value' => isset($currentSettings[$elementInfo['envKey']]) ? $currentSettings[$elementInfo['envKey']] : '',
+                        'placeholder' => $elementInfo['placeholder'],
+                        'options' => isset($elementInfo['options']) ? $elementInfo['options'] : []
+                   ])
+                @endforeach
             @endforeach
-        @endforeach
-        <div class="f1-buttons">
-            @if($isEnvFile)
-                <button type="button" class="btn" disabled><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
-                <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
-            @else
-                <button type="submit" class="btn btn-next"><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
-                <button type="button" class="btn" disabled><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
-            @endif
-        </div>
+            <div class="f1-buttons">
+                @if($isEnvFile)
+                    <button type="button" class="btn" disabled><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
+                    <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
+                @else
+                    <button type="submit" class="btn btn-next"><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
+                    <button type="button" class="btn" disabled><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
+                @endif
+            </div>
+        @endif
     </form>
 @endsection
 
