@@ -25,7 +25,8 @@ return [
         'refresh' => 'Odśwież',
         'save' => 'Zapisz',
         'createAccount' => 'Utwórz konto',
-        'finish' => 'Zakończ'
+        'finish' => 'Zakończ',
+        'copy' => 'Skopiuj',
     ],
 
     /*
@@ -75,6 +76,8 @@ return [
     'mainSettings' => [
         'header' => 'Główne Ustawienia',
         'desc' => 'Poniżej skonfiguruj swoją aplikacje.',
+        'createEnvManually' => 'Ręczne tworzenie pliku .env',
+        'errorSavingEnv' => 'Niestety wystąpił błąd podczas tworzenia pliku .env. Utwórz go sam (.env) i wklej poniższą zawartość.',
     ],
 
     /*
@@ -109,6 +112,7 @@ return [
         'alreadyInDb' => 'Użytkownik w bazie już istnieje',
         'accountCreated' => 'Konto zostało utworzone pomyślnie',
         'errorAccount' => 'Błąd przy tworzeniu konta',
+        'setUpDb' => 'Baza danych została skonfigurowana'
     ],
 
     /*

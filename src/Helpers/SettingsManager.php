@@ -18,7 +18,7 @@ class SettingsManager
      */
     public function envFileExists()
     {
-       return file_exists(base_path('.env')) ? true : false;
+        return file_exists(base_path('.env')) ? true : false;
     }
 
     /**
@@ -31,10 +31,14 @@ class SettingsManager
         $result = [];
         $zones = config('installer.mainSettings');
 
-        if ($this->envFileExists())
+        if ($this->envFileExists()) {
+            if(session('file'))
+                session()->forget('file');
+
             foreach ($zones as $zoneKey => $zoneInfo)
                 foreach ($zoneInfo['elements'] as $elementKey => $elementInfo)
                     $result[$elementInfo['envKey']] = getenv($elementInfo['envKey']);
+        }
 
         return $result;
     }
@@ -57,17 +61,11 @@ class SettingsManager
         try {
             file_put_contents(base_path('.env'), $toEnv);
         } catch (\Exception $e) {
-            return ['success' => false, 'error' => 'Cannot save .env file', 'file' => $toEnv];
+            session(['file' => $toEnv]);
+            return ['success' => false, 'error' => 'Cannot save .env file', 'createEnv' => true];
         }
 
-        $result =  $this->setUpDb();
-
-        if ($result['success'])
-            return $result;
-        else {
-            unlink(base_path('.env'));
-            return $result;
-        }
+        return ['success' => true];
     }
 
     /**

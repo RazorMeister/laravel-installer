@@ -16,7 +16,7 @@
            [
                 'name' => $key,
                 'label' => $info['description'],
-                'value' => isset($user->$key) ? $user->$key : '',
+                'value' => isset($user->$key) ? (($key == 'password') ? '******' : $user->$key) : '',
                 'placeholder' => $info['placeholder'],
                 'options' => isset($info['options']) ? $info['options'] : []
            ])

@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
 	/*
         Fullscreen background
     */
-	$.backstretch("/vendor/installer/img/backgrounds/1.jpg");
+	$.backstretch("../vendor/installer/img/backgrounds/1.jpg");
 
 	$('#top-navbar-1').on('shown.bs.collapse', function(){
 		$.backstretch("resize");
@@ -36,4 +36,15 @@ jQuery(document).ready(function() {
         Progress bar
      */
 	bar_progress($('.f1-progress-line'));
+
+
+	/*
+        Env copy
+     */
+	$('.copy').click(function() {
+		var id = $(this).data('id');
+		var toCopy = $('#'+id);
+		toCopy.select();
+		document.execCommand('copy');
+	});
 });

@@ -125,7 +125,7 @@
 
     <!-- Javascripts -->
     <script src="{{ asset('vendor/installer/js/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ asset('vendor/installerbootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/installer/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendor/installer/js/jquery.backstretch.min.js') }}"></script>
     <script src="{{ asset('vendor/installer/js/retina-1.1.0.min.js') }}"></script>
     <script src="{{ asset('vendor/installer/js/scripts.js') }}"></script>

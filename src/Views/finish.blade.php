@@ -8,7 +8,8 @@
 @endsection
 
 @section('content')
-    <form role="form" action="{{ url('/') }}" method="GET">
+    <form role="form" action="{{ route('installer.finish') }}" method="POST">
+        @csrf
         <hr>
         <h4>{{ trans('installer::lang.finish.thanks') }}</h4>
         <h5>{{ trans('installer::lang.finish.time') }} {{ $time }}</h5>

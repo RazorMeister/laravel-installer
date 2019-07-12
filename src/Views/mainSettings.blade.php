@@ -8,18 +8,19 @@
 @endsection
 
 @section('content')
-    <form role="form" @if($isEnvFile) action="{{ route('installer.account') }}" method="GET" @else action="{{ route('installer.mainSettings') }}" method="POST" @endif>
+    <form role="form" @if($isEnvFile) action="{{ route('installer.setUpDb') }}" method="POST" @else action="{{ route('installer.mainSettings') }}" method="POST" @endif>
         @csrf
 
-        @if(isset($file))
+        @if (session('file'))
             <hr>
-            <h3>Ręczne tworzenie pliku .env</h3>
-            <p>Niestety wystąpił błąd podczas tworzenia pliku .env. Utwórz go sam (.env) i wklej poniższą zawartość.</p>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="env">Skopiuj</label>
-                <div class="col-sm-8">
-                    <textarea id="env" class="form-control">{{ $file }}</textarea>
-                </div>
+            <h3>{{ trans('installer::lang.mainSettings.createEnvManually') }}</h3>
+            <p>{{ trans('installer::lang.mainSettings.errorSavingEnv') }}</p>
+            <div class="form-group">
+                <textarea rows="10" id="env" class="form-control" style="height: auto;">{{ session('file') }}</textarea>
+            </div>
+            <div class="f1-buttons">
+                <button type="button" class="btn btn-previous" onclick="window.location.reload();"><i class="fa fa-refresh"></i> {{ trans('installer::lang.main.refresh') }}</button>
+                <button type="button" class="btn btn-next copy" data-id="env"><i class="fa fa-copy"></i> {{ trans('installer::lang.main.copy') }}</button>
             </div>
         @else
             @foreach($zones as $zoneName => $zoneInfo)

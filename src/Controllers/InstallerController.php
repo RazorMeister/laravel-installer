@@ -94,9 +94,27 @@ class InstallerController extends Controller
         $result = $settingManager->saveEnvInfo($request->all());
 
         if ($result['success'])
-            return redirect()->route('installer.account')->with('success', trans('installer::lang.controller.settingsSaved'));
-        else if ($result['error'] == 'Cannot save .env file')
-            return redirect()->back()->with(['file' => $result['file']]);
+            return redirect()->back()->with('success', trans('installer::lang.controller.settingsSaved'));
+        else if (isset($result['createEnv']))
+            return redirect()->back();
+        else
+            return redirect()->back()->with('error', $result['error'])->withInput();
+    }
+
+    /**
+     * Set Up Db (run migrations and seeders)
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function setUpDb(Request $request)
+    {
+        $settingManager = new SettingsManager();
+
+        $result = $settingManager->setUpDb();
+
+        if ($result['success'])
+            return redirect()->route('installer.account')->with('success', trans('installer::lang.controller.setUpDb'));
         else
             return redirect()->back()->with('error', $result['error'])->withInput();
     }
@@ -147,14 +165,25 @@ class InstallerController extends Controller
      */
     public function finish()
     {
-        $infoFileChecker = new InfoFileChecker();
-        $infoFileChecker->saveFile();
-
         if (session('timeStart'))
             $time = (time() - session('timeStart')).' second(s)';
         else
             $time = '---';
 
         return view('installer::finish')->with(['time' => $time]);
+    }
+
+    /**
+     * Save installerInfo file
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function finishSave(Request $request)
+    {
+        $infoFileChecker = new InfoFileChecker();
+        $infoFileChecker->saveFile();
+
+        return redirect()->route('login');
     }
 }
