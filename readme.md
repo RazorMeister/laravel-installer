@@ -1,4 +1,5 @@
 # **Laravel-installer**
+[![StyleCI](https://github.styleci.io/repos/196404913/shield?branch=master)](https://github.styleci.io/repos/196404913)
 
 ## Table of contents
 * [General info](#general-info)
