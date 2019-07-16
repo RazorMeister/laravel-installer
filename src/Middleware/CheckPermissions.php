@@ -10,7 +10,7 @@ class CheckPermissions
     private $permissionsChecker;
 
     /**
-     * CheckPermissions constructor
+     * CheckPermissions constructor.
      *
      * @param PermissionsChecker $permissionsChecker
      */
@@ -20,19 +20,21 @@ class CheckPermissions
     }
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
         $permsInfo = $this->permissionsChecker->checkPermission(config('installer.neededPermissions'));
 
-        if ($permsInfo['allOk'])
+        if ($permsInfo['allOk']) {
             return $next($request);
-        else
+        } else {
             return redirect(route('installer.permissions'))->with('error', trans('installer::lang.checkPermissions'));
+        }
     }
 }

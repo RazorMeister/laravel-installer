@@ -9,7 +9,7 @@ namespace RazorMeister\Installer\Helpers;
 class InfoFileChecker
 {
     /**
-     * Check if installer info file exists
+     * Check if installer info file exists.
      *
      * @return bool
      */
@@ -19,7 +19,7 @@ class InfoFileChecker
     }
 
     /**
-     * Save installer info file to storage directory
+     * Save installer info file to storage directory.
      *
      * @return bool|int
      */

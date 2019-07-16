@@ -12,7 +12,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 class SettingsManager
 {
     /**
-     * Check if .env file exists
+     * Check if .env file exists.
      *
      * @return bool
      */
@@ -22,7 +22,7 @@ class SettingsManager
     }
 
     /**
-     * Get data from .env file
+     * Get data from .env file.
      *
      * @return array
      */
@@ -32,21 +32,25 @@ class SettingsManager
         $zones = config('installer.mainSettings');
 
         if ($this->envFileExists()) {
-            if(session('file'))
+            if(session('file')) {
                 session()->forget('file');
+            }
 
-            foreach ($zones as $zoneKey => $zoneInfo)
-                foreach ($zoneInfo['elements'] as $elementKey => $elementInfo)
+            foreach ($zones as $zoneKey => $zoneInfo) {
+                foreach ($zoneInfo['elements'] as $elementKey => $elementInfo) {
                     $result[$elementInfo['envKey']] = getenv($elementInfo['envKey']);
+                }
+            }
         }
 
         return $result;
     }
 
     /**
-     * Save data from form to .env file
+     * Save data from form to .env file.
      *
      * @param array $data
+     *
      * @return array
      */
     public function saveEnvInfo(array $data)
@@ -54,9 +58,11 @@ class SettingsManager
         $toEnv = '';
         $zones = config('installer.mainSettings');
 
-        foreach ($zones as $zoneKey => $zoneInfo)
-            foreach ($zoneInfo['elements'] as $elementKey => $elementInfo)
+        foreach ($zones as $zoneKey => $zoneInfo) {
+            foreach ($zoneInfo['elements'] as $elementKey => $elementInfo) {
                 $toEnv .= $elementInfo['envKey']."=".(strpos($data[$elementKey], ' ') !== false ? "'".$data[$elementKey]."'" : $data[$elementKey])."\n";
+            }
+        }
 
         try {
             file_put_contents(base_path('.env'), $toEnv);
@@ -69,7 +75,7 @@ class SettingsManager
     }
 
     /**
-     * Run migrations and seeders
+     * Run migrations and seeders.
      *
      * @return array
      */
@@ -79,7 +85,7 @@ class SettingsManager
 
         try {
             Artisan::call('migrate', ['--force' => true], $output);
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Artisan::call('migrate:reset', ['--force' => true]);
             return ['success' => false, 'error' => $e->getMessage()];
         }

@@ -10,7 +10,7 @@ class CheckIfInstalled
     private $infoFileChecker;
 
     /**
-     * CheckIfInstalled constructor
+     * CheckIfInstalled constructor.
      *
      * @param InfoFileChecker $infoFileChecker
      */
@@ -20,17 +20,19 @@ class CheckIfInstalled
     }
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if (!$this->infoFileChecker->isInstalled())
+        if (!$this->infoFileChecker->isInstalled()) {
             return $next($request);
-        else
+        } else {
             return abort(404);
+        }
     }
 }

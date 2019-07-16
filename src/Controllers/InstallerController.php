@@ -16,7 +16,7 @@ class InstallerController extends Controller
     private $configManager;
 
     /**
-     * InstallerController constructor
+     * InstallerController constructor.
      *
      * @param ConfigManager $configManager
      */
@@ -26,7 +26,7 @@ class InstallerController extends Controller
     }
 
     /**
-     * Show greeting site
+     * Show greeting site.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -38,7 +38,7 @@ class InstallerController extends Controller
     }
 
     /**
-     * Show packages page
+     * Show packages page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -52,7 +52,7 @@ class InstallerController extends Controller
     }
 
     /**
-     * Show permission page
+     * Show permission page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -65,7 +65,7 @@ class InstallerController extends Controller
     }
 
     /**
-     * Show mainSettings page
+     * Show mainSettings page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -80,7 +80,7 @@ class InstallerController extends Controller
     }
 
     /**
-     * Validate and save settings
+     * Validate and save settings.
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -93,18 +93,20 @@ class InstallerController extends Controller
 
         $result = $settingManager->saveEnvInfo($request->all());
 
-        if ($result['success'])
+        if ($result['success']) {
             return redirect()->back()->with('success', trans('installer::lang.controller.settingsSaved'));
-        else if (isset($result['createEnv']))
+        } else if (isset($result['createEnv'])) {
             return redirect()->back();
-        else
+        } else {
             return redirect()->back()->with('error', $result['error'])->withInput();
+        }
     }
 
     /**
-     * Set Up Db (run migrations and seeders)
+     * Set Up Db (run migrations and seeders).
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function setUpDb(Request $request)
@@ -113,14 +115,15 @@ class InstallerController extends Controller
 
         $result = $settingManager->setUpDb();
 
-        if ($result['success'])
+        if ($result['success']) {
             return redirect()->route('installer.account')->with('success', trans('installer::lang.controller.setUpDb'));
-        else
+        } else {
             return redirect()->back()->with('error', $result['error'])->withInput();
+        }
     }
 
     /**
-     * Show account page
+     * Show account page.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -129,52 +132,57 @@ class InstallerController extends Controller
         $accountManager = new AccountManager();
         $fields = config('installer.account.fields');
 
-        if ($isInDb = $accountManager->isUserInDb())
+        if ($isInDb = $accountManager->isUserInDb()) {
             $user = $accountManager->getFirstUser();
-        else
+        } else {
             $user = [];
+        }
 
         return view('installer::account')->with(['isInDb' => $isInDb, 'user' => $user, 'fields' => $fields]);
     }
 
     /**
-     * Validate user's data and save user to db
+     * Validate user's data and save user to db.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function accountSave(Request $request)
     {
         $accountManager = new AccountManager();
 
-        if ($accountManager->isUserInDb())
+        if ($accountManager->isUserInDb()) {
             return redirect()->back()->with('error', trans('installer::lang.controller.alreadyInDb'));
+        }
 
         $request->validate($this->configManager->getAccountRules());
 
-        if ($accountManager->createAccount($request->all()))
+        if ($accountManager->createAccount($request->all())) {
             return redirect()->route('installer.finish')->with('success', trans('installer::lang.controller.accountCreated'));
-        else
+        } else {
             return redirect()->back()->with('error', trans('installer::lang.controller.errorAccount'))->withInput();
+        }
     }
 
     /**
-     * Show finish info
+     * Show finish info.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function finish()
     {
-        if (session('timeStart'))
+        if (session('timeStart')) {
             $time = (time() - session('timeStart')).' second(s)';
-        else
+        } else {
             $time = '---';
+        }
 
         return view('installer::finish')->with(['time' => $time]);
     }
 
     /**
-     * Save installerInfo file
+     * Save installerInfo file.
      *
      * @param Request $request
      * @return string

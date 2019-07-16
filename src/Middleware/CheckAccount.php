@@ -10,7 +10,7 @@ class CheckAccount
     private $accountManager;
 
     /**
-     * CheckAccount constructor
+     * CheckAccount constructor.
      *
      * @param AccountManager $accountManager
      */
@@ -20,17 +20,19 @@ class CheckAccount
     }
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if ($this->accountManager->isUserInDb())
+        if ($this->accountManager->isUserInDb()) {
             return $next($request);
-        else
+        } else {
             return redirect(route('installer.account'))->with('error', trans('installer::lang.checkAccount'));
+        }
     }
 }

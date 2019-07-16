@@ -15,14 +15,14 @@ return [
      |  app is requiring.
      |
      */
-    'minPhpVersion' => '7.0.0',
-    'requiredPackages' => [
+    'minPhpVersion'     => '7.0.0',
+    'requiredPackages'  => [
         'php' => [
             'openssl',
             'pdo',
             'mbstring',
             'JSON',
-            'curl'
+            'curl',
         ],
         'apache' => [
             'rewrite',
@@ -39,8 +39,8 @@ return [
      */
     'neededPermissions' => [
         'storage/framework/' => 777,
-        'storage/logs/' => 775,
-        'bootstrap/cache/' => 775
+        'storage/logs/'      => 775,
+        'bootstrap/cache/'   => 775
     ],
 
     /*
@@ -55,28 +55,28 @@ return [
     'mainSettings' => [
         'app' => [                                          // Zone id
             'description' => 'Ustawienia aplikacji',        // Zone description
-            'elements' => [
+            'elements'    => [
                 'app-name' => [                             // Input name ane id attribute
                     'description' => 'Nazwa aplikacji',     // Input label
-                    'envKey' => 'APP_NAME',                 // Key in .env file
-                    'rules' => 'required|string|max:30',    // Laravel validation rules
-                    'inputType' => 'text',                  // Input type text | number | email | select
+                    'envKey'      => 'APP_NAME',                 // Key in .env file
+                    'rules'       => 'required|string|max:30',    // Laravel validation rules
+                    'inputType'   => 'text',                  // Input type text | number | email | select
                     'placeholder' => 'Laravel APP',         // Placeholder in input
                 ],
                 'app-url' => [
                     'description' => 'Domena aplikacji',
-                    'envKey' => 'APP_URL',
-                    'rules' => 'required|url|max:30',
-                    'inputType' => 'text',
+                    'envKey'      => 'APP_URL',
+                    'rules'       => 'required|url|max:30',
+                    'inputType'   => 'text',
                     'placeholder' => 'http://laravelApp.com',
                 ],
                 'app-debug' => [
                     'description' => 'Wypisywanie błędów',
-                    'envKey' => 'APP_DEBUG',
-                    'rules' => 'required|boolean',
-                    'inputType' => 'select',
+                    'envKey'      => 'APP_DEBUG',
+                    'rules'       => 'required|boolean',
+                    'inputType'   => 'select',
                     'placeholder' => 'false',
-                    'options' => [      // Set options to select input
+                    'options'     => [      // Set options to select input
                         'select' => [
                             // Value => Label
                             '0' => 'Nie',
@@ -88,55 +88,55 @@ return [
         ],
         'database' => [
             'description' => 'Ustawienia bazy danych',
-            'elements' => [
+            'elements'    => [
                 'db-connection' => [
                     'description' => 'Typ połączenia',
-                    'envKey' => 'DB_CONNECTION',
-                    'rules' => 'required|string|in:mysql,sqlite,pgsql,sqlsrv',
-                    'inputType' => 'select',
+                    'envKey'      => 'DB_CONNECTION',
+                    'rules'       => 'required|string|in:mysql,sqlite,pgsql,sqlsrv',
+                    'inputType'   => 'select',
                     'placeholder' => 'mysql',
-                    'options' => [
+                    'options'     => [
                         'select' => [
-                            'mysql' => 'Mysql',
+                            'mysql'  => 'Mysql',
                             'sqlite' => 'SqlLite',
-                            'pgsql' => 'Postgre Sql',
+                            'pgsql'  => 'Postgre Sql',
                             'sqlsrv' => 'Sql Server',
                         ],
                     ],
                 ],
                 'db-host' => [
                     'description' => 'Adres bazy danych',
-                    'envKey' => 'DB_HOST',
-                    'rules' => 'required|ip|max:30',
-                    'inputType' => 'text',
+                    'envKey'      => 'DB_HOST',
+                    'rules'       => 'required|ip|max:30',
+                    'inputType'   => 'text',
                     'placeholder' => '127.0.0.1',
                 ],
                 'db-name' => [
                     'description' => 'Nazwa bazy danych',
-                    'envKey' => 'DB_DATABASE',
-                    'rules' => 'required|string|max:30',
-                    'inputType' => 'text',
+                    'envKey'      => 'DB_DATABASE',
+                    'rules'       => 'required|string|max:30',
+                    'inputType'   => 'text',
                     'placeholder' => 'Database',
                 ],
                 'db-login' => [
                     'description' => 'Login do bazy',
-                    'envKey' => 'DB_USERNAME',
-                    'rules' => 'required|string|max:30',
-                    'inputType' => 'text',
+                    'envKey'      => 'DB_USERNAME',
+                    'rules'       => 'required|string|max:30',
+                    'inputType'   => 'text',
                     'placeholder' => 'root',
                 ],
                 'db-password' => [
                     'description' => 'Hasło do bazy',
-                    'envKey' => 'DB_PASSWORD',
-                    'rules' => 'required|string|max:30',
-                    'inputType' => 'text',
+                    'envKey'      => 'DB_PASSWORD',
+                    'rules'       => 'required|string|max:30',
+                    'inputType'   => 'text',
                     'placeholder' => 'password123',
                 ],
                 'db-port' => [
                     'description' => 'Port bazy danych',
-                    'envKey' => 'DB_PORT',
-                    'rules' => 'required|numeric',
-                    'inputType' => 'number',
+                    'envKey'      => 'DB_PORT',
+                    'rules'       => 'required|numeric',
+                    'inputType'   => 'number',
                     'placeholder' => '3306',
                 ],
             ],
@@ -158,26 +158,26 @@ return [
             'name' => [ // Column name in users table, it's also id and name attribute
                 'description' => 'Imię',    // Label to input
                 'placeholder' => 'John',    // Placeholder in input
-                'inputType' => 'text',      // Input type: text | number | email | select
-                'rules' => 'required|string|max:30' // Laravel validation rules
+                'inputType'   => 'text',      // Input type: text | number | email | select
+                'rules'       => 'required|string|max:30' // Laravel validation rules
             ],
             'surname' => [
                 'description' => 'Nazwisko',
                 'placeholder' => 'Wick',
-                'inputType' => 'text',
-                'rules' => 'required|string|max:30'
+                'inputType'   => 'text',
+                'rules'       => 'required|string|max:30'
             ],
             'email' => [
                 'description' => 'Email',
                 'placeholder' => 'John@wick.com',
-                'inputType' => 'email',
-                'rules' => 'required|email|max:30'
+                'inputType'   => 'email',
+                'rules'       => 'required|email|max:30'
             ],
             'password' => [
                 'description' => 'Hasło',
                 'placeholder' => 'password123',
-                'inputType' => 'text',
-                'rules' => 'required|string|max:30'
+                'inputType'   => 'text',
+                'rules'       => 'required|string|max:30'
             ],
         ],
         'defaults' => [

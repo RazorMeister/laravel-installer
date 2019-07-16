@@ -9,7 +9,7 @@ namespace RazorMeister\Installer\Helpers;
 class ConfigManager
 {
     /**
-     * Get validation rules for account page from config
+     * Get validation rules for account page from config.
      *
      * @return array
      */
@@ -17,14 +17,15 @@ class ConfigManager
     {
         $rules = [];
 
-        foreach (config('installer.account.fields') as $key => $info)
+        foreach (config('installer.account.fields') as $key => $info) {
             $rules[$key] = $info['rules'];
+        }
 
         return $rules;
     }
 
     /**
-     * Get validation rules for mainSettings page from config
+     * Get validation rules for mainSettings page from config.
      *
      * @return array
      */
@@ -32,9 +33,11 @@ class ConfigManager
     {
         $rules = [];
 
-        foreach (config('installer.mainSettings') as $zoneKey => $zoneInfo)
-            foreach ($zoneInfo['elements'] as $key => $info)
+        foreach (config('installer.mainSettings') as $zoneKey => $zoneInfo) {
+            foreach ($zoneInfo['elements'] as $key => $info) {
                 $rules[$key] = $info['rules'];
+            }
+        }
 
         return $rules;
     }

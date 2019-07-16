@@ -10,7 +10,7 @@ class CheckPackages
     private $packageChecker;
 
     /**
-     * CheckPackages constructor
+     * CheckPackages constructor.
      *
      * @param PackageChecker $packageChecker
      */
@@ -20,10 +20,11 @@ class CheckPackages
     }
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -31,9 +32,10 @@ class CheckPackages
         $phpVerInfo = $this->packageChecker->checkPhpVersion(config('installer.minPhpVersion'));
         $packagesInfo = $this->packageChecker->checkPackages(config('installer.requiredPackages'));
 
-        if ($phpVerInfo['isOk'] && $packagesInfo['allOk'])
+        if ($phpVerInfo['isOk'] && $packagesInfo['allOk']) {
             return $next($request);
-        else
+        } else {
             return redirect(route('installer.packages'))->with('error', trans('installer::lang.checkPackages'));
+        }
     }
 }

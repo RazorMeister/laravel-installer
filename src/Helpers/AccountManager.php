@@ -11,9 +11,10 @@ use App\User;
 class AccountManager
 {
     /**
-     * Create new user
+     * Create new user.
      *
      * @param array $data
+     *
      * @return User
      */
     public function createAccount(array $data)
@@ -22,23 +23,27 @@ class AccountManager
         $cfg = config('installer.account');
 
         foreach ($cfg['fields'] as $key => $info) {
-            if ($key == 'password') $data[$key] = bcrypt($data[$key]);
+            if ($key == 'password') {
+                $data[$key] = bcrypt($data[$key]);
+            }
             $user->$key = $data[$key];
         }
 
-        foreach ($cfg['defaults'] as $key => $value)
+        foreach ($cfg['defaults'] as $key => $value) {
             $user->$key = $value;
+        }
 
         $user->save();
 
-        foreach ($cfg['attach'] as $name => $id)
+        foreach ($cfg['attach'] as $name => $id) {
             $user->$name()->attach($id);
+        }
 
         return $user;
     }
 
     /**
-     * Get first user model
+     * Get first user model.
      *
      * @return mixed
      */
@@ -48,7 +53,7 @@ class AccountManager
     }
 
     /**
-     * Check if user is in database
+     * Check if user is in database.
      *
      * @return bool
      */

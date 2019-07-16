@@ -9,9 +9,10 @@ namespace RazorMeister\Installer\Helpers;
 class PackageChecker
 {
     /**
-     * Check PHP version
+     * Check PHP version.
      *
      * @param $minVersion
+     *
      * @return array
      */
     public function checkPhpVersion($minVersion)
@@ -20,9 +21,10 @@ class PackageChecker
     }
 
     /**
-     * Check required packages
+     * Check required packages.
      *
      * @param array $packages
+     *
      * @return array
      */
     public function checkPackages(array $packages)
@@ -32,9 +34,9 @@ class PackageChecker
 
         if (!empty($packages['php'])) {
             foreach ($packages['php'] as $package) {
-                if (extension_loaded($package))
+                if (extension_loaded($package)) {
                     $result['php-'.$package] = true;
-                else {
+                } else {
                     $result['php-'.$package] = false;
                     $allOk = false;
                 }
@@ -43,9 +45,9 @@ class PackageChecker
 
         if (!empty($packages['apache']) && function_exists('apache_get_modules')) {
             foreach ($packages['apache'] as $package) {
-                if (in_array($package, apache_get_modules()))
+                if (in_array($package, apache_get_modules())) {
                     $result['apache-'.$package] = true;
-                else {
+                } else {
                     $result['apache-'.$package] = false;
                     $allOk = false;
                 }

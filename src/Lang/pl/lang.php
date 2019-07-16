@@ -11,22 +11,22 @@ return [
      *
      */
     'main' => [
-        'title' => 'Laravel Instalator',
-        'headerDesc' => 'Poniżej możesz zainstalować swoją aplikacje.',
-        'start' => 'Start',
-        'packages' => 'Pakiety',
-        'permissions' => 'Permisje',
-        'settings' => 'Ustawienia',
-        'account' => 'Konto',
-        'finish' => 'Koniec',
-        'error' => 'Error',
-        'success' => 'Sukces',
-        'next' => 'Dalej',
-        'refresh' => 'Odśwież',
-        'save' => 'Zapisz',
+        'title'         => 'Laravel Instalator',
+        'headerDesc'    => 'Poniżej możesz zainstalować swoją aplikacje.',
+        'start'         => 'Start',
+        'packages'      => 'Pakiety',
+        'permissions'   => 'Permisje',
+        'settings'      => 'Ustawienia',
+        'account'       => 'Konto',
+        'finish'        => 'Koniec',
+        'error'         => 'Error',
+        'success'       => 'Sukces',
+        'next'          => 'Dalej',
+        'refresh'       => 'Odśwież',
+        'save'          => 'Zapisz',
         'createAccount' => 'Utwórz konto',
-        'finish' => 'Zakończ',
-        'copy' => 'Skopiuj',
+        'finish'        => 'Zakończ',
+        'copy'          => 'Skopiuj',
     ],
 
     /*
@@ -36,8 +36,8 @@ return [
      */
     'start' => [
         'header' => 'Start',
-        'desc' => 'Witaj w kreatorze instalacji Laravel!',
-        'info' => 'Kliknij poniższy przycisk, aby przystąpić do instalacji!'
+        'desc'   => 'Witaj w kreatorze instalacji Laravel!',
+        'info'   => 'Kliknij poniższy przycisk, aby przystąpić do instalacji!'
     ],
 
     /*
@@ -46,13 +46,13 @@ return [
     *
     */
     'packages' => [
-        'header' => 'Pakiety',
-        'desc' => 'Poniżej możesz zobaczyć status potrzebnych pakietów.',
-        'phpVer' => 'Wersja PHP',
+        'header'     => 'Pakiety',
+        'desc'       => 'Poniżej możesz zobaczyć status potrzebnych pakietów.',
+        'phpVer'     => 'Wersja PHP',
         'currentVer' => 'Obecna wersja',
-        'minVer' => 'Minimalna wersja',
+        'minVer'     => 'Minimalna wersja',
         'packetName' => 'Nazwa pakietu',
-        'status' => 'Status',
+        'status'     => 'Status',
     ],
 
     /*
@@ -61,11 +61,11 @@ return [
     *
     */
     'permissions' => [
-        'header' => 'Permisje',
-        'desc' => 'Poniżej możesz zobaczyć czy są nadane odpowiednie permisje.',
-        'folder' => 'Katalog',
-        'currentPerms' => 'Obecna prawa',
-        'minPerms' => 'Wymagane prawa',
+        'header'        => 'Permisje',
+        'desc'          => 'Poniżej możesz zobaczyć czy są nadane odpowiednie permisje.',
+        'folder'        => 'Katalog',
+        'currentPerms'  => 'Obecna prawa',
+        'minPerms'      => 'Wymagane prawa',
     ],
 
     /*
@@ -74,10 +74,10 @@ return [
     *
     */
     'mainSettings' => [
-        'header' => 'Główne Ustawienia',
-        'desc' => 'Poniżej skonfiguruj swoją aplikacje.',
+        'header'            => 'Główne Ustawienia',
+        'desc'              => 'Poniżej skonfiguruj swoją aplikacje.',
         'createEnvManually' => 'Ręczne tworzenie pliku .env',
-        'errorSavingEnv' => 'Niestety wystąpił błąd podczas tworzenia pliku .env. Utwórz go sam (.env) i wklej poniższą zawartość.',
+        'errorSavingEnv'    => 'Niestety wystąpił błąd podczas tworzenia pliku .env. Utwórz go sam (.env) i wklej poniższą zawartość.',
     ],
 
     /*
@@ -87,7 +87,7 @@ return [
     */
     'account' => [
         'header' => 'Konto',
-        'desc' => 'Poniżej możesz ustawić dane logowania do panelu.',
+        'desc'   => 'Poniżej możesz ustawić dane logowania do panelu.',
     ],
 
     /*
@@ -96,10 +96,10 @@ return [
     *
     */
     'finish' => [
-        'header' => 'Koniec!',
-        'desc' => 'Instalacja aplikacji dobiegła końca.',
-        'thanks' => 'Dziękujemy za skorzystanie z Laravel Installatora by RazorMeister.',
-        'time' => 'Czas Twojej instalacji wyniósł: ',
+        'header'    => 'Koniec!',
+        'desc'      => 'Instalacja aplikacji dobiegła końca.',
+        'thanks'    => 'Dziękujemy za skorzystanie z Laravel Installatora by RazorMeister.',
+        'time'      => 'Czas Twojej instalacji wyniósł: ',
     ],
 
     /*
@@ -108,11 +108,11 @@ return [
     *
     */
     'controller' => [
-        'settingsSaved' => 'Ustawienia zostały zapisane',
-        'alreadyInDb' => 'Użytkownik w bazie już istnieje',
+        'settingsSaved'  => 'Ustawienia zostały zapisane',
+        'alreadyInDb'    => 'Użytkownik w bazie już istnieje',
         'accountCreated' => 'Konto zostało utworzone pomyślnie',
-        'errorAccount' => 'Błąd przy tworzeniu konta',
-        'setUpDb' => 'Baza danych została skonfigurowana'
+        'errorAccount'   => 'Błąd przy tworzeniu konta',
+        'setUpDb'        => 'Baza danych została skonfigurowana'
     ],
 
     /*

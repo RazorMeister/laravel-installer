@@ -10,7 +10,7 @@ class CheckSettings
     private $settingsManager;
 
     /**
-     * CheckSettings constructor
+     * CheckSettings constructor.
      *
      * @param SettingsManager $settingsManager
      */
@@ -20,17 +20,19 @@ class CheckSettings
     }
 
     /**
-     * Handle an incoming request
+     * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-        if ($this->settingsManager->envFileExists())
+        if ($this->settingsManager->envFileExists()) {
             return $next($request);
-        else
+        } else {
             return redirect(route('installer.mainSettings'))->with('error', trans('installer::lang.checkSettings'));
+        }
     }
 }
