@@ -3,7 +3,6 @@
  * @author     Tymoteusz `RazorMeister` Bartnik
  * @file       routes.php
  */
-
 Route::group([
     'middleware' => ['web', 'checkIfInstalled'],
     'prefix'     => 'install',

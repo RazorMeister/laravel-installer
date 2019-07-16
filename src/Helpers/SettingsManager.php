@@ -68,6 +68,7 @@ class SettingsManager
             file_put_contents(base_path('.env'), $toEnv);
         } catch (\Exception $e) {
             session(['file' => $toEnv]);
+
             return ['success' => false, 'error' => 'Cannot save .env file', 'createEnv' => true];
         }
 
@@ -87,6 +88,7 @@ class SettingsManager
             Artisan::call('migrate', ['--force' => true], $output);
         } catch (\Exception $e) {
             Artisan::call('migrate:reset', ['--force' => true]);
+
             return ['success' => false, 'error' => $e->getMessage()];
         }
 
@@ -94,6 +96,7 @@ class SettingsManager
             Artisan::call('db:seed', ['--force' => true], $output);
         } catch (\Exception $e) {
             Artisan::call('migrate:reset', ['--force' => true]);
+
             return ['success' => false, 'error' => $e->getMessage()];
         }
 
