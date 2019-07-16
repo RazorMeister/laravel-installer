@@ -37,7 +37,7 @@ return [
     'start' => [
         'header' => 'Start',
         'desc'   => 'Witaj w kreatorze instalacji Laravel!',
-        'info'   => 'Kliknij poniższy przycisk, aby przystąpić do instalacji!'
+        'info'   => 'Kliknij poniższy przycisk, aby przystąpić do instalacji!',
     ],
 
     /*
@@ -112,7 +112,7 @@ return [
         'alreadyInDb'    => 'Użytkownik w bazie już istnieje',
         'accountCreated' => 'Konto zostało utworzone pomyślnie',
         'errorAccount'   => 'Błąd przy tworzeniu konta',
-        'setUpDb'        => 'Baza danych została skonfigurowana'
+        'setUpDb'        => 'Baza danych została skonfigurowana',
     ],
 
     /*

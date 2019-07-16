@@ -83,6 +83,7 @@ class InstallerController extends Controller
      * Validate and save settings.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function mainSettingsSave(Request $request)
@@ -95,7 +96,7 @@ class InstallerController extends Controller
 
         if ($result['success']) {
             return redirect()->back()->with('success', trans('installer::lang.controller.settingsSaved'));
-        } else if (isset($result['createEnv'])) {
+        } elseif (isset($result['createEnv'])) {
             return redirect()->back();
         } else {
             return redirect()->back()->with('error', $result['error'])->withInput();
@@ -185,6 +186,7 @@ class InstallerController extends Controller
      * Save installerInfo file.
      *
      * @param Request $request
+     *
      * @return string
      */
     public function finishSave(Request $request)

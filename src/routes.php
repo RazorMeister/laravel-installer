@@ -8,7 +8,7 @@ Route::group([
     'middleware' => ['web', 'checkIfInstalled'],
     'prefix'     => 'install',
     'as'         => 'installer.',
-    'namespace'  => 'RazorMeister\Installer\Controllers'
+    'namespace'  => 'RazorMeister\Installer\Controllers',
 ], function () {
     // Redirect from /install to /install/start
     Route::redirect('/', 'install/start');

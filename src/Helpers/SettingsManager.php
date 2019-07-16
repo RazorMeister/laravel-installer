@@ -32,7 +32,7 @@ class SettingsManager
         $zones = config('installer.mainSettings');
 
         if ($this->envFileExists()) {
-            if(session('file')) {
+            if (session('file')) {
                 session()->forget('file');
             }
 
@@ -60,7 +60,7 @@ class SettingsManager
 
         foreach ($zones as $zoneKey => $zoneInfo) {
             foreach ($zoneInfo['elements'] as $elementKey => $elementInfo) {
-                $toEnv .= $elementInfo['envKey']."=".(strpos($data[$elementKey], ' ') !== false ? "'".$data[$elementKey]."'" : $data[$elementKey])."\n";
+                $toEnv .= $elementInfo['envKey'].'='.(strpos($data[$elementKey], ' ') !== false ? "'".$data[$elementKey]."'" : $data[$elementKey])."\n";
             }
         }
 

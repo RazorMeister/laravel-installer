@@ -40,7 +40,7 @@ return [
     'neededPermissions' => [
         'storage/framework/' => 777,
         'storage/logs/'      => 775,
-        'bootstrap/cache/'   => 775
+        'bootstrap/cache/'   => 775,
     ],
 
     /*
@@ -159,25 +159,25 @@ return [
                 'description' => 'Imię',    // Label to input
                 'placeholder' => 'John',    // Placeholder in input
                 'inputType'   => 'text',      // Input type: text | number | email | select
-                'rules'       => 'required|string|max:30' // Laravel validation rules
+                'rules'       => 'required|string|max:30', // Laravel validation rules
             ],
             'surname' => [
                 'description' => 'Nazwisko',
                 'placeholder' => 'Wick',
                 'inputType'   => 'text',
-                'rules'       => 'required|string|max:30'
+                'rules'       => 'required|string|max:30',
             ],
             'email' => [
                 'description' => 'Email',
                 'placeholder' => 'John@wick.com',
                 'inputType'   => 'email',
-                'rules'       => 'required|email|max:30'
+                'rules'       => 'required|email|max:30',
             ],
             'password' => [
                 'description' => 'Hasło',
                 'placeholder' => 'password123',
                 'inputType'   => 'text',
-                'rules'       => 'required|string|max:30'
+                'rules'       => 'required|string|max:30',
             ],
         ],
         'defaults' => [
