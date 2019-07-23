@@ -25,7 +25,7 @@ return [
             'curl',
         ],
         'apache' => [
-            'rewrite',
+            'mod_rewrite',
         ],
     ],
 
@@ -59,14 +59,14 @@ return [
                 'app-name' => [                             // Input name ane id attribute
                     'description' => 'Nazwa aplikacji',     // Input label
                     'envKey'      => 'APP_NAME',                 // Key in .env file
-                    'rules'       => 'required|string|max:30',    // Laravel validation rules
+                    'rules'       => 'required|string|max:50',   // Laravel validation rules
                     'inputType'   => 'text',                  // Input type text | number | email | select
                     'placeholder' => 'Laravel APP',         // Placeholder in input
                 ],
                 'app-url' => [
                     'description' => 'Domena aplikacji',
                     'envKey'      => 'APP_URL',
-                    'rules'       => 'required|url|max:30',
+                    'rules'       => 'required|url|max:50',
                     'inputType'   => 'text',
                     'placeholder' => 'http://laravelApp.com',
                 ],
