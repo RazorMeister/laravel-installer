@@ -72,6 +72,7 @@ class SettingsManager
             file_put_contents(base_path('.env'), $toEnv);
         } catch (\Exception $e) {
             session(['file' => $toEnv]);
+
             return ['success' => false, 'error' => 'Cannot save .env file', 'createEnv' => true];
         }
 
@@ -100,7 +101,7 @@ class SettingsManager
                 return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badDatabase')];
             }
         }
-        
+
         try {
             Artisan::call('migrate', ['--force' => true], $output);
         } catch (\Exception $e) {
