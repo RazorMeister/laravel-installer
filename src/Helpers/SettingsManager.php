@@ -6,8 +6,8 @@
 
 namespace RazorMeister\Installer\Helpers;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Output\BufferedOutput;
 
 class SettingsManager
@@ -36,9 +36,9 @@ class SettingsManager
             if (session('file') && !session('setUpDbError')) {
                 session()->forget('file');
             }
-			if (session('file') && session('setUpDbError')) {
-				session()->forget('setUpDbError');
-			}
+            if (session('file') && session('setUpDbError')) {
+                session()->forget('setUpDbError');
+            }
 
             foreach ($zones as $zoneKey => $zoneInfo) {
                 foreach ($zoneInfo['elements'] as $elementKey => $elementInfo) {
@@ -87,17 +87,19 @@ class SettingsManager
     {
         $output = new BufferedOutput();
 
-		try {
-			DB::select('select * from migrations');
-		} catch (\Exception $e) {
-			if ($e->getCode() == 1045) { // Bad login or password
-				session(['setUpDbError' => 1]);
-				return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badPasses')];
-			} elseif ($e->getCode() == 1049) { // Bad database
-				session(['setUpDbError' => 1]);
-				return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badDatabase')];
-			}
-		}
+        try {
+            DB::select('select * from migrations');
+        } catch (\Exception $e) {
+            if ($e->getCode() == 1045) { // Bad login or password
+                session(['setUpDbError' => 1]);
+
+                return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badPasses')];
+            } elseif ($e->getCode() == 1049) { // Bad database
+                session(['setUpDbError' => 1]);
+
+                return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badDatabase')];
+            }
+        }
 		
         try {
             Artisan::call('migrate', ['--force' => true], $output);

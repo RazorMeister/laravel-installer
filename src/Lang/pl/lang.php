@@ -143,12 +143,12 @@ return [
     */
     'checkAccount' => 'Najpier załóż konto!',
 	
-	/*
+    /*
     *
     * Helpers/SettingsManager.php
     *
     */
-	'tryAgain' => '  |  Spróbuj ponownie.',
-	'badPasses' => '  |  Błędne dane logowania! Zmień je.',
-	'badDatabase' => '  |  Błędna baza danych! Zmień ją lub utwórz nową.',
+    'tryAgain'    => '  |  Spróbuj ponownie.',
+    'badPasses'   => '  |  Błędne dane logowania! Zmień je.',
+    'badDatabase' => '  |  Błędna baza danych! Zmień ją lub utwórz nową.',
 ];
