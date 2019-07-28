@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <form role="form" @if($isEnvFile) action="{{ route('installer.setUpDb') }}" method="POST" @else action="{{ route('installer.mainSettings') }}" method="POST" @endif>
+    <form role="form" @if($isEnvFile && !$setUpDbError) action="{{ route('installer.setUpDb') }}" method="POST" @else action="{{ route('installer.mainSettings') }}" method="POST" @endif>
         @csrf
 
         @if (session('file'))
@@ -39,7 +39,7 @@
                 @endforeach
             @endforeach
             <div class="f1-buttons">
-                @if($isEnvFile)
+                @if($isEnvFile && !$setUpDbError)
                     <button type="button" class="btn" disabled><i class="fa fa-check"></i> {{ trans('installer::lang.main.save') }}</button>
                     <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right"></i> {{ trans('installer::lang.main.next') }}</button>
                 @else

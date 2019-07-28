@@ -6,6 +6,7 @@
 
 namespace RazorMeister\Installer\Helpers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -32,9 +33,12 @@ class SettingsManager
         $zones = config('installer.mainSettings');
 
         if ($this->envFileExists()) {
-            if (session('file')) {
+            if (session('file') && !session('setUpDbError')) {
                 session()->forget('file');
             }
+			if (session('file') && session('setUpDbError')) {
+				session()->forget('setUpDbError');
+			}
 
             foreach ($zones as $zoneKey => $zoneInfo) {
                 foreach ($zoneInfo['elements'] as $elementKey => $elementInfo) {
@@ -63,12 +67,11 @@ class SettingsManager
                 $toEnv .= $elementInfo['envKey'].'='.(strpos($data[$elementKey], ' ') !== false ? "'".$data[$elementKey]."'" : $data[$elementKey])."\n";
             }
         }
-
+		
         try {
             file_put_contents(base_path('.env'), $toEnv);
         } catch (\Exception $e) {
             session(['file' => $toEnv]);
-
             return ['success' => false, 'error' => 'Cannot save .env file', 'createEnv' => true];
         }
 
@@ -84,12 +87,24 @@ class SettingsManager
     {
         $output = new BufferedOutput();
 
+		try {
+			DB::select('select * from migrations');
+		} catch (\Exception $e) {
+			if ($e->getCode() == 1045) { // Bad login or password
+				session(['setUpDbError' => 1]);
+				return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badPasses')];
+			} elseif ($e->getCode() == 1049) { // Bad database
+				session(['setUpDbError' => 1]);
+				return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badDatabase')];
+			}
+		}
+		
         try {
             Artisan::call('migrate', ['--force' => true], $output);
         } catch (\Exception $e) {
             Artisan::call('migrate:reset', ['--force' => true]);
 
-            return ['success' => false, 'error' => $e->getMessage()];
+            return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.tryAgain')];
         }
 
         try {
@@ -97,7 +112,7 @@ class SettingsManager
         } catch (\Exception $e) {
             Artisan::call('migrate:reset', ['--force' => true]);
 
-            return ['success' => false, 'error' => $e->getMessage()];
+            return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.tryAgain')];
         }
 
         return ['success' => true, 'info' => $output->fetch()];

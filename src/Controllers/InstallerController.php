@@ -75,8 +75,9 @@ class InstallerController extends Controller
         $isEnvFile = $settingManager->envFileExists();
         $currentSettings = $settingManager->getEnvInfo();
         $zones = config('installer.mainSettings');
+		$setUpDbError = session('setUpDbError') ? session('setUpDbError') : false;
 
-        return view('installer::mainSettings')->with(['isEnvFile' => $isEnvFile, 'currentSettings' => $currentSettings, 'zones' => $zones]);
+        return view('installer::mainSettings')->with(['isEnvFile' => $isEnvFile, 'currentSettings' => $currentSettings, 'zones' => $zones, 'setUpDbError' => $setUpDbError]);
     }
 
     /**
