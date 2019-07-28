@@ -67,7 +67,7 @@ class SettingsManager
                 $toEnv .= $elementInfo['envKey'].'='.(strpos($data[$elementKey], ' ') !== false ? "'".$data[$elementKey]."'" : $data[$elementKey])."\n";
             }
         }
-		
+
         try {
             file_put_contents(base_path('.env'), $toEnv);
         } catch (\Exception $e) {
@@ -100,7 +100,7 @@ class SettingsManager
                 return ['success' => false, 'error' => $e->getMessage().trans('installer::lang.badDatabase')];
             }
         }
-		
+        
         try {
             Artisan::call('migrate', ['--force' => true], $output);
         } catch (\Exception $e) {

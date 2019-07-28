@@ -142,7 +142,7 @@ return [
     *
     */
     'checkAccount' => 'Najpier załóż konto!',
-	
+
     /*
     *
     * Helpers/SettingsManager.php
